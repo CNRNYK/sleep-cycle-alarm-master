@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gmail.brunokawka.poland.sleepcyclealarm">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:name=".app.CustomApp"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SleepCycleAlarm">
+
+        <activity android:name="sdk.pendo.io.activities.PendoGateActivity"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="pendo-605fe638"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="605fe638" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <meta-data android:name="insert_debug_logging" android:value="true" />
+
+
+
+        <activity android:name=".app.base.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".settings.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.SleepCycleAlarm" />
+
+        <activity android:name=".schedule.AlarmActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SleepCycleAlarm" />
+
+        <service android:name=".schedule.AlarmService" />
+
+        <receiver android:name=".schedule.AlarmReceiver" />
+    </application>
+
+</manifest>
